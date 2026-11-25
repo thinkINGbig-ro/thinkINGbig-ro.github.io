@@ -86,7 +86,10 @@ a:hover { text-decoration-color: var(--text); }
   border: 1.5px dashed var(--text-2); color: var(--text-2);
   margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
-.hero-logo img { width: min(100%, 60rem); }
+.hero-logo { display: flex; align-items: center; gap: clamp(.75rem, 2.5vw, 1.75rem); }
+.hero-simbol { width: clamp(5.25rem, 3rem + 11vw, 12rem); flex: none; }
+.hero-nume { width: auto; height: clamp(2.1rem, .9rem + 5.2vw, 5.75rem); min-width: 0; }
+.hero-actiuni { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; }
 .misiune {
   font-size: clamp(1.5rem, 1.1rem + 1.9vw, 2.375rem);
   line-height: 1.28;
@@ -286,7 +289,8 @@ details[open] > .alegere-sub { background: #40347A; }
 
 /* ---------- 404 ---------- */
 .pagina-404 { min-height: 100svh; align-items: center; }
-.pagina-404 .logo-mic { display: inline-block; margin-bottom: 3rem; }
-.pagina-404 .logo-mic img { width: 12rem; }
+.pagina-404 .logo-mic { display: inline-flex; align-items: center; gap: .75rem; margin-bottom: 3rem; }
+.pagina-404 .logo-mic img:first-child { width: 4rem; }
+.pagina-404 .logo-mic img:last-child { width: auto; height: 2rem; }
 .pagina-404 h1 { font-size: clamp(2.125rem, 1.4rem + 3.4vw, 3.5rem); line-height: 1.04; max-width: 16ch; }
 .pagina-404 .misiune { font-size: 1.375rem; margin: 1.5rem 0 2rem; }
