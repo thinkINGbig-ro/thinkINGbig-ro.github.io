@@ -5,7 +5,8 @@
 //   NODE_PATH=$(npm root -g) node tools/genereaza-imagini.mjs
 //
 // Iconița (favicon) se face din assets/logo-icon.svg dacă există, altfel din assets/logo.svg.
-// Imaginea OG (1200×630) pune assets/logo.svg pe fundalul mov, cu misiunea dedesubt.
+// Imaginea OG (1200×630) pune assets/logo.svg (și assets/wordmark.svg, dacă există) pe fundalul mov,
+// cu misiunea dedesubt.
 
 import { createRequire } from 'node:module';
 import { readFileSync, writeFileSync, existsSync, copyFileSync } from 'node:fs';
@@ -22,6 +23,7 @@ const iconSrc = existsSync(a('logo-icon.svg')) ? a('logo-icon.svg') : a('logo.sv
 const logo = dataUrl(a('logo.svg'), 'image/svg+xml');
 const icon = dataUrl(iconSrc, 'image/svg+xml');
 const font = dataUrl(a('fonts/newsreader.woff2'), 'font/woff2');
+const wordmark = existsSync(a('wordmark.svg')) ? dataUrl(a('wordmark.svg'), 'image/svg+xml') : null;
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
@@ -40,7 +42,7 @@ const iconHtml = (s) => `<!doctype html><style>html,body{margin:0;width:${s}px;h
 body{display:grid;place-items:center}img{max-width:${s}px;max-height:${s}px}</style>
 <body><img src="${icon}"></body>`;
 const apple = (s) => `<!doctype html><style>html,body{margin:0;width:${s}px;height:${s}px;background:#1E1638}
-body{display:grid;place-items:center}img{width:${s}px;height:${s}px;object-fit:contain}</style>
+body{display:grid;place-items:center}img{width:${Math.round(s * .86)}px;height:${Math.round(s * .86)}px;object-fit:contain}</style>
 <body><img src="${icon}"></body>`;
 
 const png32 = await shot(iconHtml(32), 32, 32, a('favicon-32.png'));
@@ -60,10 +62,13 @@ await shot(`<!doctype html><style>
 @font-face{font-family:N;src:url(${font}) format('woff2')}
 html,body{margin:0;width:1200px;height:630px;background:#1E1638;color:#F3EEFF}
 body{display:flex;flex-direction:column;justify-content:center;padding:0 96px;box-sizing:border-box;gap:44px}
-img{width:760px;max-height:300px;object-fit:contain;object-position:left center}
+.marca{display:flex;align-items:center;gap:40px}
+.simbol{height:240px;width:auto}
+.nume{height:100px;width:auto}
+.marca img:only-child{height:300px;max-width:1000px}
 p{font:400 40px/1.3 N,serif;margin:0;max-width:900px;color:#F3EEFF}
 small{display:block;margin-top:14px;font-size:28px;color:#C9BFE8}
-</style><body><img src="${logo}" alt=""><p>Educație financiară explicată simplu.<small>Un proiect thinkINGbig, Baia Mare</small></p></body>`,
+</style><body><div class="marca"><img class="simbol" src="${logo}" alt="">${wordmark ? `<img class="nume" src="${wordmark}" alt="">` : ''}</div><p>Educație financiară explicată simplu.<small>Un proiect thinkINGbig, Baia Mare</small></p></body>`,
   1200, 630, a('og-image.png'));
 
 await browser.close();
