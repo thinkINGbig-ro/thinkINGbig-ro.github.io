@@ -93,9 +93,9 @@ Când e gata logo-ul real:
 4. Verifică imaginile, apoi fă commit. Rețelele sociale țin imaginea OG în cache; o poți reîmprospăta din debugger-ul fiecărei platforme.
 
 ### De unde vin cifrele (de actualizat când se schimbă jocul)
-Toate cifrele despre joc sunt luate din README-ul repo-ului thinkingbig-ro/finventure (verificat la commit-ul 6a3d358, 25.11.2026):
+Toate cifrele despre joc sunt luate din README-ul repo-ului thinkingbig-ro/finventure (verificat la commit-ul 17ee226, 25.11.2026):
 - „90 de concepte” și „14 finaluri”: secțiunea „Ce înveți”.
-- Simularea: secțiunea „Cum am verificat că jocul e corect”: 500 de vieți pe stil, 4 stiluri (deci 2.000 în total); procentele „Ajung liniștiți la pensie” (afișate pe site ca „ajung la pensie fără faliment”: 100%, 100%, 38%, 1%) și averea tipică (~1,2 mil., ~2 mil., ~86.000 lei, sub zero).
+- Simularea: secțiunea „Cum am verificat că jocul e corect”: 500 de vieți pe stil, 4 stiluri (deci 2.000 în total); procentele „Ajung liniștiți la pensie” (afișate pe site ca „ajung la pensie fără faliment”: 100%, 100%, 38%, 1%) și averea tipică (~1,3 mil., ~2 mil., ~86.000 lei, sub zero).
 - Cele 10 teme de la „Ce înveți”: secțiunea „Ce înveți” din README.
 - „Ce nu face încă jocul” (Noua Casă, credite în euro): secțiunea cu același nume.
 - Plafonul de îndatorare 40% / 45% la prima locuință: README, secțiunea „Cifrele sunt reale”; sursa din joc e `data/config.json` („Regulamentul BNR 17/2012 modificat”).
